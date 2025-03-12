@@ -1,0 +1,65 @@
+1. Text() -> it is used to display something on the screen it we import it from android.compose.material.text
+#Syntax
+Text(
+    text: String, // OR AnnotatedString for rich text
+    modifier: Modifier = Modifier, // Modifier for layout adjustments
+    color: Color = LocalContentColor.current, // Text color
+    fontSize: TextUnit = TextUnit.Unspecified, // Font size (e.g., 16.sp)
+    fontStyle: FontStyle? = null, // Font style (Italic, Normal)
+    fontWeight: FontWeight? = null, // Font weight (Bold, Light, etc.)
+    fontFamily: FontFamily? = null, // Custom font family
+    letterSpacing: TextUnit = TextUnit.Unspecified, // Spacing between letters
+    textDecoration: TextDecoration? = null, // Underline, Strikethrough, etc.
+    textAlign: TextAlign? = null, // Alignment (Left, Center, Right, Justify)
+    lineHeight: TextUnit = TextUnit.Unspecified, // Height of each line
+    overflow: TextOverflow = TextOverflow.Clip, // Handling overflow text (Ellipsis, Clip, etc.)
+    softWrap: Boolean = true, // Enable/disable text wrapping
+    maxLines: Int = Int.MAX_VALUE, // Maximum number of lines
+    minLines: Int = 1, // Minimum number of lines
+    inlineContent: Map<String, InlineTextContent> = mapOf(), // Custom inline content (e.g., images)
+    onTextLayout: (TextLayoutResult) -> Unit = {}, // Callback for layout changes
+    style: TextStyle = LocalTextStyle.current // A complete style object
+)
+
+
+2. Composable function
+Composable functions are the building blocks of Jetpack Compose,
+Google's modern UI toolkit for Android.
+These functions define the UI in a declarative way,
+meaning you describe what the UI should look like,
+and Compose takes care of rendering it efficiently
+1. we use  @Composable to make it
+2. it does nto return any value
+3. It must start with Capital letter
+
+
+#sytanx
+@Composable
+fun <fun_name>(){
+code
+}
+
+// BY DEFAULT IN JETPACK COMPOSE EVERYTHING IS IN STACK
+3. Column:
+In Jetpack Compose, Column is a layout composable that arranges its children vertically in a single column.
+Column{<Items>}
+
+
+4. How to use font using google
+1. Download it and extract it and make everything in lowercase
+2. Create the folder name font or anything in ur res folder
+3. go to app/src/main/java/com/example/kotlineandriodstudy/ui/theme/Type.kt and create the
+new variable and define your font there
+Create a Type.kt file inside your ui.theme package (or wherever you manage typography) and define your FontFamily like this:
+package com.example.app.ui.theme
+
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import com.example.app.R  // Import your app's R file
+
+val WindSong = FontFamily(
+    Font(R.font.windsong, FontWeight.Normal),
+    Font(R.font.windsong_bold, FontWeight.Bold) // Add different weights if available
+)
+
