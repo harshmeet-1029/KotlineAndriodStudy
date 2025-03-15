@@ -4,13 +4,23 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.selection.DisableSelection
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.kotlineandriodstudy.ui.theme.WindSong
 
@@ -20,17 +30,33 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            Column {
+                HeaderPadding()
 //            Text("Harshmeet Singh",fontSize =30.sp)
 //            Display2()
 //            Display("Harshmeet")
 //            DisProb()
 //            Col()
 //            LoopList()
-            TextStyling()
+//            TextStyling()
+//            LongText()
+//            SelectableText()
+                PartiallySelectableText()
+            }
         }
     }
 }
 
+@Composable
+fun HeaderPadding(){
+    Box(
+        modifier = Modifier
+            .padding(top = 10.dp)
+            .background(color = Color(0xff66bb6a)) // Over here THE FIRST 0X IS USED BEFORE THE HEX CODE
+            .fillMaxWidth()
+            .height(56.dp)
+    )// THE FIRST FF REPRESENT TEH OPACITY
+}
 // How to create a composable functions
 @Composable
 fun Display2(){
@@ -83,11 +109,50 @@ fun LoopList(){
 fun TextStyling(){
 Text(
     text= "Hey Harshmeet singh",
-    fontSize = 15.sp,
+    fontSize = 30.sp,
     color = Color.Blue,
     fontStyle = FontStyle.Italic,
     fontWeight = FontWeight.W600,
     fontFamily = WindSong,
-    textAlign = TextAlign.Center,// like webd it take that much with as it is the content
+    textAlign = TextAlign.Center,// like webD. it take that much with as it is the content
+    modifier = Modifier.background(color = Color.Yellow)
+        .width(2000.dp)
 )
 }
+
+/// How to repeat a text
+@Composable
+fun LongText(){
+    Text("Harsh ".repeat(20), fontSize = 30.sp, maxLines = 2)
+}
+
+@Composable
+fun SelectableText(){
+    SelectionContainer {
+        Text("Harshmeet Singh", fontSize = 20.sp, modifier = Modifier.padding(top = 10.dp, end = 10.dp))
+    }
+}
+
+@Composable
+fun PartiallySelectableText(){
+    //Mehtod 1
+    Column {
+        SelectionContainer {
+            Column {
+                Text(
+                    "Selectable Text",
+                    fontSize = 30.sp,
+                    modifier = Modifier.padding(top = 10.dp, end = 10.dp)
+                )
+                DisableSelection {
+                    Text("Non Selectable text Disable Selection", fontSize = 30.sp)
+                }
+            }
+        }
+
+        Text("Non Selectable text", fontSize = 30.sp)
+    // Method 2
+
+    }
+}
+

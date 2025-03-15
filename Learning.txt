@@ -21,7 +21,7 @@ Text(
     style: TextStyle = LocalTextStyle.current // A complete style object
 )
 
-
+==========================================
 2. Composable function
 Composable functions are the building blocks of Jetpack Compose,
 Google's modern UI toolkit for Android.
@@ -38,12 +38,12 @@ and Compose takes care of rendering it efficiently
 fun <fun_name>(){
 code
 }
-
+==========================================
 // BY DEFAULT IN JETPACK COMPOSE EVERYTHING IS IN STACK
 3. Column:
 In Jetpack Compose, Column is a layout composable that arranges its children vertically in a single column.
 Column{<Items>}
-
+==========================================
 
 4. How to use font using google
 1. Download it and extract it and make everything in lowercase
@@ -63,3 +63,39 @@ val WindSong = FontFamily(
     Font(R.font.windsong_bold, FontWeight.Bold) // Add different weights if available
 )
 
+==========================================
+5. Modifiers
+1. What Are Modifiers?
+    A modifier in Jetpack Compose enhances a composable by adding: ✅ Styling (colors, padding, borders)
+    ✅ Layout adjustments (size, alignment, spacing)
+    ✅ Interactions (clicks, gestures, animations
+
+ )
+ 🛠 2. Why Not Just Add Everything to Text()?
+ If Text() had to handle all styles, layout, and interactions, it would become bloated and hard to maintain.
+ 🔹 It would need too many parameters, making it confusing.
+ 🔹 You couldn't reuse the same behavior for other composables like Button(), Image(), etc.
+ 🔹 Separation of concerns: Text() focuses only on rendering text, and Modifier handles how it behaves.
+
+==========================================
+6. How to repeat a text
+we use .repeat to repeat a text
+like
+Text("Harsh".repeat(<times>),maxLines = <lines>)
+maxLines force it to display the text in two lines only
+and it will crop the text of the text and will never dispaly
+==========================================
+
+7. How to make text selectable
+we use SelectionContainer to make the text selectable
+SelectionContainer{
+Widgets
+}
+
+7.1. How to Disable Selection
+we use Disable Selection to make the text selection disable
+DisableSelection{
+
+}
+
+==================---Layouts-----========================
