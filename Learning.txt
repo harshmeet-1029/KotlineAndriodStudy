@@ -99,3 +99,89 @@ DisableSelection{
 }
 
 ==================---Layouts-----========================
+-=-=--=-=-=-=---=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=
+8. Row //They are not scrollable by default
+Row is a layout composable used to arrange elements horizontally in a single line.
+NOTE--------------->
+Row arranges its children horizontally from left to right. But to control how they are positioned inside the Row, we need:
+
+Arrangement → Controls horizontal positioning of children.
+
+Options for Arrangement
+Value	                    Effect
+Arrangement.Start	        Aligns items to the start (left).
+Arrangement.End	            Aligns items to the end (right).
+Arrangement.Center	        Aligns items in the center.
+Arrangement.SpaceBetween	Puts maximum space between items.
+Arrangement.SpaceAround	    Puts equal space around each item.
+Arrangement.SpaceEvenly	    Distributes equal space between and around items.
+
+Alignment → Controls vertical positioning of children inside the Row.
+
+Options for Alignment
+Value	                    Effect
+Alignment.Top	            Aligns items to the top.
+Alignment.CenterVertically	Aligns items in the vertical center.
+Alignment.Bottom	        Aligns items to the bottom.
+------------------------------------------
+Make the row scrollable we use modifier .horizontalScroll(rememberScrollState())
+-=-=--=-=-=-=---=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=
+
+9. Column //They are not scrollable by default
+ It is used to arrange the elements Vertically
+Make the row scrollable we use modifier .verticalScroll(rememberScrollState())
+-=-=--=-=-=-=---=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=
+
+10 LazyRow
+It is used to make the thing scrollable only but it loads lazy like the thing which is
+visible in the screen will only be loaded others will not
+-=-=--=-=-=-=---=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=
+
+11 LazyColumn
+It is used to make the thing scrollable only but it loads lazy like the thing which is
+visible in the screen will only be loaded others will not
+
+-=-=--=-=-=-=---=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=
+12. Box
+A Box is a simple layout component in Jetpack Compose that stacks its children on top of each other.
+✅ Why Use Box?
+✔ Overlapping elements (like text over an image).
+✔ Positioning child elements freely using Modifier.align().
+✔ Creating UI components like badges, floating buttons, or overlays.
+
+📌 Basic Example of Box
+Box(
+    modifier = Modifier
+        .fillMaxSize()
+        .background(Color.LightGray)
+) {
+    Text(
+        text = "Hello Box!",
+        fontSize = 24.sp,
+        modifier = Modifier.align(Alignment.Center) // Centers the text inside Box
+    )
+}
+🔹 The text is centered inside the Box using align(Alignment.Center).
+
+🎯 Key Properties of Box
+Property	Purpose
+.align()	Positions a child inside the Box (e.g., Alignment.TopStart).
+.fillMaxSize()	Makes the Box take full screen size.
+.background()	Sets the background color.
+.padding()	Adds padding inside the Box.
+🔥 Example: Text Over Image
+Box {
+    Image(
+        painter = painterResource(R.drawable.sample_image),
+        contentDescription = "Background Image",
+        modifier = Modifier.fillMaxSize()
+    )
+    Text(
+        text = "Overlay Text",
+        color = Color.White,
+        fontSize = 24.sp,
+        modifier = Modifier.align(Alignment.BottomCenter) // Places text at bottom
+    )
+}
+
+
