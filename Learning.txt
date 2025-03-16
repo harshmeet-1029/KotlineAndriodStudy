@@ -184,4 +184,20 @@ Box {
     )
 }
 
+==========================================
+13. Material Design
+Material Design is a UI design system created by Google that defines the look and feel of Android apps.
+Jetpack Compose provides Material Design components to help developers create modern, consistent, and responsive UIs
 
+🔥 Common Material Components in Jetpack Compose
+Component	    Usage
+
+Button()	    Clickable button with ripple effect
+TextField()	    Input field for user text
+Card()	        A material-styled card container
+Scaffold()	    Structure for AppBars, FABs, and drawers
+Surface()	    Themed background container
+TopAppBar()	    AppBar (Toolbar) for navigation
+
+==========================================
+14. Accessing the Image

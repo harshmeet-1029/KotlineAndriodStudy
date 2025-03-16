@@ -1,6 +1,7 @@
 package com.example.kotlineandriodstudy
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -14,7 +15,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,6 +23,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -41,9 +43,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            Box(
-                modifier = Modifier .padding(top = 25.dp)
-            ) {
+
 //              HeaderPadding()
 //            Text("Harshmeet Singh",fontSize =30.sp)
 //            Display2()
@@ -61,10 +61,10 @@ class MainActivity : ComponentActivity() {
 //            ScrollableColElement()
 //            LazyRowExample()
 //            LazyColExample()
-              BoxExample()
-            }
-            }
+//            BoxExample()
+//            MaterialDesignExample()
 
+            }
     }
 }
 
@@ -127,7 +127,8 @@ Text(
     fontWeight = FontWeight.W600,
     fontFamily = WindSong,
     textAlign = TextAlign.Center,// like webD. it take that much with as it is the content
-    modifier = Modifier.background(color = Color.Yellow)
+    modifier = Modifier
+        .background(color = Color.Yellow)
         .width(2000.dp)
 )
 }
@@ -147,7 +148,7 @@ fun SelectableText(){
 
 @Composable
 fun PartiallySelectableText(){
-    //Mehtod 1
+    //Method 1
     Column {
         SelectionContainer {
             Column {
@@ -163,8 +164,6 @@ fun PartiallySelectableText(){
         }
 
         Text("Non Selectable text", fontSize = 30.sp)
-    // Method 2
-
     }
 }
 
@@ -302,13 +301,52 @@ fun BoxExample(){
          .fillMaxHeight(0.5f)
          .fillMaxWidth(0.5f)
  ){
-     Text("This is outer box.........")
+     Text("This is outer box.........") // This comes as the yellow part
      Box( modifier = Modifier
          .background(color = Color.Blue)
          .fillMaxHeight(0.5f)
          .fillMaxWidth(0.5f)
      ){
-         Text("This is inner box.........")
+         Text("This is inner box",color=Color.White, modifier = Modifier.align(Alignment.Center)) // this comes on top of it
      }
+     Text("Testing",color = Color.Green, modifier = Modifier.align(Alignment.Center)) // but this comes on top of blue and yellow both
+
  }
+}
+
+@OptIn(ExperimentalMaterial3Api::class) // I have to write this
+@Composable
+fun MaterialDesignExample(){
+Scaffold(
+    topBar = {
+        TopAppBar(
+            title = { Text("Material APP") },
+            colors = TopAppBarDefaults.topAppBarColors(
+                containerColor = Color(0xFF04411A),
+                titleContentColor = Color.White,
+
+            ),
+            actions = { // The placement of it is at the right side
+                IconButton(onClick = {Log.d("top bar","Action icon")}) {
+                    Icon(Icons.Default.Menu,contentDescription = null, tint = Color.White)
+
+                }
+            },
+            navigationIcon = { // placement of it is at the left side
+                IconButton(onClick = {Log.d("top bar","Navigation Icon")}) {
+                    Icon(Icons.Default.Menu,contentDescription = null, tint = Color.White)
+
+                }
+            }
+        )
+    }
+){ padding -> // It is imp as it give padding to us from all sides so that it won't send text to the background of the top bar
+    Box(modifier = Modifier.padding(padding)) {
+        LazyColExample()
+ }}
+}
+
+@Composable
+fun AccessingImage(){
+
 }
