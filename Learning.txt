@@ -255,3 +255,52 @@ implementation(libs.coil.compose)
 Icon(
 <add the icon here >
 )
+
+==========================================
+17. Card
+ Cards are like div in web development but follow Material Design principles! 🚀
+ A Card in Jetpack Compose is a container component that follows Material Design principles. It is used to group content, add elevation (shadow), and create a structured UI.
+
+Card(
+    modifier = Modifier,
+    shape = RoundedCornerShape(10.dp),
+    colors = CardDefaults.cardColors(containerColor = Color.White),
+    elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+    border = BorderStroke(2.dp, Color.Black),
+    onClick = { /* Handle Click */ },
+    content = { /* Content inside card */ }
+)
+
+
+📌 List of Card Properties
+Property	  Description	                                        Example
+modifier	  Used to set size, padding, margin, etc.	            modifier = Modifier.padding(10.dp).fillMaxWidth()
+shape	      Defines the shape of the card (Rounded, Cut, etc.)	shape = RoundedCornerShape(16.dp)
+colors	      Sets background and content colors	                colors = CardDefaults.cardColors(containerColor = Color.Red)
+elevation	  Adds shadow effect	                                elevation = CardDefaults.cardElevation(6.dp)
+border	      Adds a border to the card	                            border = BorderStroke(2.dp, Color.Black)
+onClick	      Makes the card clickable	                            onClick = { Log.d("Click", "Card Clicked") }
+content	      Defines the UI inside the card	                    content = { Text("Hello") }
+==========================================
+18. Spacer
+it is used to give a space in middle
+Spacer(modifier = Modifier.height(100.dp)
+
+==========================================
+19. How to create state in kotlin
+
+A stateful component means it remembers values and updates itself when needed.
+You use remember and mutableStateOf() to create a state.
+  var count by remember { mutableStateOf(0) } // 🔹 State: It remembers the count value
+
+==========================================
+
+20. what is state hoisting
+State hoisting is a design pattern in Jetpack Compose where
+we move (hoist) the state from a composable function to its parent.
+This makes the state more reusable, testable, and manageable.
+
+📌 When to Use State Hoisting?
+When multiple components need access to the same state.
+When the parent needs control over the child’s behavior.
+When we want better reusability and testability.

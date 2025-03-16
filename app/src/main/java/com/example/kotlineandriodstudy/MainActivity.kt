@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -14,9 +15,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -24,6 +27,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
@@ -32,6 +36,10 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -51,7 +59,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
+        setContent () {
 
 //              HeaderPadding()
 //            Text("Harshmeet Singh",fontSize =30.sp)
@@ -75,6 +83,9 @@ class MainActivity : ComponentActivity() {
 //            AccessingImage()
 //            AccessingImageFromNetowrk()
 //            usingIcon()
+//            CardExample()
+//            StateFull()
+            StateHoistingParent()
             }
     }
 }
@@ -335,7 +346,6 @@ Scaffold(
             colors = TopAppBarDefaults.topAppBarColors(
                 containerColor = Color(0xFF04411A),
                 titleContentColor = Color.White,
-
             ),
             actions = { // The placement of it is at the right side
                 IconButton(onClick = {Log.d("top bar","Action icon")}) {
@@ -346,7 +356,6 @@ Scaffold(
             navigationIcon = { // placement of it is at the left side
                 IconButton(onClick = {Log.d("top bar","Navigation Icon")}) {
                     Icon(Icons.Default.Menu,contentDescription = null, tint = Color.White)
-
                 }
             }
         )
@@ -392,5 +401,49 @@ Icon(
 
 @Composable
 fun CardExample(){
+    Box(modifier = Modifier.fillMaxSize().background(color = Color.LightGray)){
+Card(
+    modifier = Modifier.padding(top = 30.dp),
+    shape = RoundedCornerShape(6.dp),
+    colors = CardDefaults.cardColors(Color.White),
+    elevation = CardDefaults.cardElevation(defaultElevation = 15.dp),
+) {
+    Column {
+        Text("Harshmeet Singh", fontSize = 30.sp)
+        Spacer(modifier = Modifier.height(100.dp))
+        Text("Trying to be good coder ", fontSize = 30.sp)
+    }
+}}
+}
 
+@Composable
+fun StateFull(){
+    var name:String by remember { mutableStateOf("") }
+    TextField(
+        value = name,
+        onValueChange = {name = it},
+        label = { Text("Enter your name") },
+        modifier = Modifier.padding(10.dp)
+
+    )
+}
+
+// State hoisting
+@Composable
+fun StateHoistingParent(){
+    var name:String by remember { mutableStateOf("") }
+
+    StateHoistingFull(name, onNameChange = {name= it})
+
+    Text(name, fontSize = 20.sp)
+}
+@Composable
+fun StateHoistingFull(name:String,onNameChange:(String)-> Unit){
+    TextField(
+        value = name,
+        onValueChange = onNameChange,
+        label = { Text("Enter your name") },
+        modifier = Modifier.padding(10.dp)
+
+    )
 }
