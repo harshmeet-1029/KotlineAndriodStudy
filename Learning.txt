@@ -201,3 +201,57 @@ TopAppBar()	    AppBar (Toolbar) for navigation
 
 ==========================================
 14. Accessing the Image
+1. Add the image to the res folder
+2. Add the Image(painter = PainterResource(id = R.drawable.<image_name>),
+                 contentDescription = <Description>
+                 modifier = <Modifier>
+                 )
+
+Common Modifiers for Images
+Modifier	                            Purpose
+.size(100.dp)	                        Sets width & height equally
+.width(100.dp).height(150.dp)	        Custom width & height
+.fillMaxWidth()             	        Expands to full width
+.clip(RoundedCornerShape(10.dp))	    Rounds corners
+.border(2.dp, Color.Black)	            Adds a border
+.background(Color.Gray)	                Sets background color
+.padding(8.dp)	                        Adds space around
+
+==========================================
+15. Accessing the Image from network
+1. we need to install the plugin for that we need to to the gradle which is in app/build.gradle.kts
+2. Add the dependency in the dependencies obj
+
+How can i add that implementation(io.coil-kt:coil-compose:2.5.0)
+
+ChatGPT said:
+You're using Version Catalogs (libs.XXX) for dependencies, but you're trying to add coil-compose using a traditional method.
+
+To fix this, you have two options:
+
+Option 1: Add it to libs.versions.toml (Recommended)
+Since you're using libs.XXX, you should add coil-compose inside gradle/libs.versions.toml:
+
+1️⃣ Open gradle/libs.versions.toml
+2️⃣ Add the Coil dependency under [versions] and [libraries]:
+
+[versions]
+coil = "2.5.0" # Add this version if not present
+
+[libraries]
+coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+3️⃣ Now, update dependencies in build.gradle.kts like this:
+
+implementation(libs.coil.compose)
+
+
+3.  Use rememberAsyncImagePainter and add the link there
+
+4. If the app crash while using this then add internet permissions in the manifest files (app/src/main/AndroidManifest.xml)
+
+==========================================
+16. Using Icons
+1.First we need to use the Icon tag
+Icon(
+<add the icon here >
+)
