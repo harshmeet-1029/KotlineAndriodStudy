@@ -304,3 +304,19 @@ This makes the state more reusable, testable, and manageable.
 When multiple components need access to the same state.
 When the parent needs control over the child’s behavior.
 When we want better reusability and testability.
+
+==========================================
+🛠 Difference Between Modifier.padding() & contentPadding
+
+Feature 	Modifier.padding()	        contentPadding
+Works on	Any composable	            Specific composable (Scaffold, LazyColumn, etc.)
+Affects	    Outer space (margin)	    Inner space (inside content)
+Example	    Modifier.padding(16.dp)	    contentPadding = PaddingValues(16.dp)
+==========================================
+
+21. Button
+Button is used to preform any action when clicked on it
+Button(onClick = {}){
+<Text need to go inside the button>
+}
+}

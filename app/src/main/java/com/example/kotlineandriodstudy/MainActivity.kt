@@ -85,7 +85,8 @@ class MainActivity : ComponentActivity() {
 //            usingIcon()
 //            CardExample()
 //            StateFull()
-            StateHoistingParent()
+//            StateHoistingParent()
+            ButtonsExample()
             }
     }
 }
@@ -446,4 +447,12 @@ fun StateHoistingFull(name:String,onNameChange:(String)-> Unit){
         modifier = Modifier.padding(10.dp)
 
     )
+}
+
+@Composable
+fun ButtonsExample(){
+Button(onClick = { Log.d("Button Clicked","Clicking the Button")}) {
+
+    Text("Button")
+}
 }
