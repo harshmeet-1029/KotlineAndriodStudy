@@ -33,6 +33,8 @@ import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.AddCircle
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -86,7 +88,8 @@ class MainActivity : ComponentActivity() {
 //            CardExample()
 //            StateFull()
 //            StateHoistingParent()
-            ButtonsExample()
+//            ButtonsExample()
+            TextFieldExample()
             }
     }
 }
@@ -451,8 +454,67 @@ fun StateHoistingFull(name:String,onNameChange:(String)-> Unit){
 
 @Composable
 fun ButtonsExample(){
-Button(onClick = { Log.d("Button Clicked","Clicking the Button")}) {
+    Column {
 
-    Text("Button")
+            // Normal button
+            Button(
+                onClick = { Log.d("Button Clicked","Clicking the Button")},
+                modifier = Modifier
+                    .padding(23.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Yellow,  // Button background
+                    contentColor = Color.Black ),     // Button text color ),
+                shape = RoundedCornerShape(1.dp),
+                border = BorderStroke(2.dp,Color.Blue),
+                        contentPadding = PaddingValues(top = 20.dp, start = 30.dp, end = 30.dp, bottom = 20.dp)
+            ) {
+                Text("Button")
+                }
+            // Text button
+            TextButton(
+                onClick = { Log.d("Button Clicked","Clicking the Button")},
+                modifier = Modifier
+                    .padding(23.dp),
+                colors = ButtonDefaults.textButtonColors( contentColor = Color.Black)
+            ) {
+
+                Text("Button")
+                }
+            // Outlined button
+        OutlinedButton(  onClick = { Log.d("Button Clicked","Clicking the Button")},
+            colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Cyan),
+            border = BorderStroke(1.dp, color = Color.Green),
+            shape = RoundedCornerShape(topStart = 16.dp, topEnd = 0.dp, bottomEnd = 16.dp, bottomStart = 0.dp)
+        ) {
+            Text("Button")
+            }
+IconButton(
+    onClick = { Log.d("Button Clicked","Clicking the Button")},
+    modifier = Modifier.padding(1.dp).border(1.dp, color = Color.Red, CircleShape)
+) {
+    Icon(Icons.Outlined.Add, contentDescription = null)
 }
+        FloatingActionButton(
+            onClick = { Log.d("Button Clicked","Clicking the Button")},
+            modifier = Modifier.padding(10.dp),
+            containerColor = Color.Yellow,
+            contentColor = Color.Red,
+            shape = CircleShape //default square
+            , elevation = FloatingActionButtonDefaults.elevation(
+                defaultElevation = 8.dp, // Normal state
+                pressedElevation = 12.dp, // When clicked
+                hoveredElevation = 10.dp,
+                focusedElevation = 8.dp
+            )
+        ) {
+
+            Icon(Icons.Outlined.Add, contentDescription = null)
+        }
+
+    }
+}
+
+@Composable
+fun TextFieldExample(){
+
 }
