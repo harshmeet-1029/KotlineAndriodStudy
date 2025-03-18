@@ -28,11 +28,13 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material.icons.outlined.AddCircle
 import androidx.compose.material.icons.outlined.Edit
@@ -48,8 +50,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -516,5 +521,81 @@ IconButton(
 
 @Composable
 fun TextFieldExample(){
+// First text filed
+    LazyColumn(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        contentPadding = PaddingValues(10.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ){
+        item{
+            var name:String by remember { mutableStateOf("") }
+            // Basic Text filed
+            TextField(
+                value = name,
+                onValueChange = {name =  it},
+                label = { Text("Enter your name") },
+                placeholder = { Text("Write your name") },
+                textStyle = TextStyle(Color.Blue),
+                leadingIcon = {
+                    Icon(Icons.Filled.Person, contentDescription = null)
+                },
+                shape = RoundedCornerShape(10.dp),
+                colors = TextFieldDefaults.colors(
+                    focusedIndicatorColor = Color.Red,
+                    unfocusedIndicatorColor = Color.Transparent
+                ),
+//                readOnly = true,
+//                singleLine = true, // it will prevent from going it to another line
+            )
+        }
+    // Outlines one
+        item{
+            var name:String by remember { mutableStateOf("") }
+            // Basic Text filed
+            OutlinedTextField(
+                value = name,
+                onValueChange = {name =  it},
+                label = { Text("Enter your name") },
+                placeholder = { Text("Write your name") },
+                textStyle = TextStyle(Color.Blue),
+                leadingIcon = {
+                    Icon(Icons.Filled.Person, contentDescription = null)
+                },
+                shape = RoundedCornerShape(10.dp),
+                colors = TextFieldDefaults.colors(
+                    focusedIndicatorColor = Color.Red,
+                    unfocusedIndicatorColor = Color.Transparent
+                ),
+//                readOnly = true,
+//                singleLine = true, // it will prevent from going it to another line
+            )
+        }
 
+        // How to show password
+        item{
+            var name:String by remember { mutableStateOf("") }
+            // Basic Text filed
+            OutlinedTextField(
+                value = name,
+                onValueChange = {name =  it},
+                label = { Text("Enter your name") },
+                placeholder = { Text("Write your name") },
+                textStyle = TextStyle(Color.Blue),
+                leadingIcon = {
+                    Icon(Icons.Filled.Person, contentDescription = null)
+                },
+                shape = RoundedCornerShape(10.dp),
+                colors = TextFieldDefaults.colors(
+                    focusedIndicatorColor = Color.Red,
+                    unfocusedIndicatorColor = Color.Transparent
+                ),
+//                readOnly = true,
+//                singleLine = true, // it will prevent from going it to another line
+                visualTransformation = PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+            )
+        }
+
+    }
 }
