@@ -33,10 +33,11 @@ import androidx.compose.foundation.text.selection.DisableSelection
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.Add
-import androidx.compose.material.icons.outlined.AddCircle
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -60,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.kotlineandriodstudy.ui.theme.WindSong
+import kotlin.math.sin
 
 
 class MainActivity : ComponentActivity() {
@@ -94,7 +96,8 @@ class MainActivity : ComponentActivity() {
 //            StateFull()
 //            StateHoistingParent()
 //            ButtonsExample()
-            TextFieldExample()
+//            TextFieldExample()
+            RegistrationForm()
             }
     }
 }
@@ -379,7 +382,7 @@ Scaffold(
 fun AccessingImage(){
     Image(painter = painterResource(R.drawable.a), contentDescription = null, modifier = Modifier
         .size(500.dp)
-        .border(2.dp, color = Color.Red,CircleShape)
+        .border(2.dp, color = Color.Red, CircleShape)
         .clip(shape = CircleShape)
         .background(color = Color.Blue),
         contentScale = ContentScale.Crop // Add the scaling to content
@@ -392,7 +395,7 @@ fun AccessingImageFromNetowrk(){
         "https://getwallpapers.com/wallpaper/full/a/0/7/701514-gorgerous-iu-wallpaper-3840x2160-xiaomi.jpg"
     ), contentDescription = null, modifier = Modifier
         .size(500.dp)
-        .border(2.dp, color = Color.Red,CircleShape)
+        .border(2.dp, color = Color.Red, CircleShape)
         .clip(shape = CircleShape)
         .background(color = Color.Blue),
         contentScale = ContentScale.Crop // Add the scaling to content
@@ -410,7 +413,9 @@ Icon(
 
 @Composable
 fun CardExample(){
-    Box(modifier = Modifier.fillMaxSize().background(color = Color.LightGray)){
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(color = Color.LightGray)){
 Card(
     modifier = Modifier.padding(top = 30.dp),
     shape = RoundedCornerShape(6.dp),
@@ -495,7 +500,9 @@ fun ButtonsExample(){
             }
 IconButton(
     onClick = { Log.d("Button Clicked","Clicking the Button")},
-    modifier = Modifier.padding(1.dp).border(1.dp, color = Color.Red, CircleShape)
+    modifier = Modifier
+        .padding(1.dp)
+        .border(1.dp, color = Color.Red, CircleShape)
 ) {
     Icon(Icons.Outlined.Add, contentDescription = null)
 }
@@ -597,5 +604,49 @@ fun TextFieldExample(){
             )
         }
 
+    }
+}
+
+
+@Composable
+fun RegistrationForm() {
+    var email: String by remember { mutableStateOf("") }
+    var password: String by remember { mutableStateOf("") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Box(
+            modifier = Modifier
+                .size(150.dp)
+                .clip(CircleShape)
+                .background(Color(0x99E3E3E3)),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                Icons.Filled.Person,
+                contentDescription = null,
+                tint = Color(0xffd31b57),
+                modifier = Modifier.size(100.dp)
+            )
+        }
+
+        TextField(
+            value = email,
+            singleLine = true,
+            onValueChange = {email = it },
+            shape = RoundedCornerShape(50.dp),
+            placeholder = { Text("Username", color = Color(0xFFb5b8c2)) }
+            , colors = TextFieldDefaults.colors(
+    focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedContainerColor = Color(0xFFebecee),
+                unfocusedContainerColor = Color(0xFFebecee)
+            )
+        )
     }
 }
