@@ -9,7 +9,9 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -684,6 +686,14 @@ fun RegistrationForm() {
             )
         ) {
             Text("Log in")
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically){
+           Text("Don't have an account?", fontSize = 11.sp)
+
+    Text("Create", fontWeight = FontWeight.W600, modifier = Modifier.padding(0.dp).clickable {
+        Log.d("Forgot Password","Forgot Password")
+    })
         }
         Spacer(modifier = Modifier.weight(2f))
     }
