@@ -618,11 +618,11 @@ fun RegistrationForm() {
             .fillMaxSize()
             .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
     ) {
+        Spacer(modifier = Modifier.weight(1f))
         Box(
             modifier = Modifier
-                .size(150.dp)
+                .size(200.dp)
                 .clip(CircleShape)
                 .background(Color(0x99E3E3E3)),
             contentAlignment = Alignment.Center
@@ -631,15 +631,18 @@ fun RegistrationForm() {
                 Icons.Filled.Person,
                 contentDescription = null,
                 tint = Color(0xffd31b57),
-                modifier = Modifier.size(100.dp)
+                modifier = Modifier.size(150.dp)
             )
         }
+        // Another spacer to push text fields down
+        Spacer(modifier = Modifier.height(100.dp))
 
         TextField(
             value = email,
             singleLine = true,
             onValueChange = {email = it },
             shape = RoundedCornerShape(50.dp),
+            modifier = Modifier.fillMaxWidth(0.8f),
             placeholder = { Text("Username", color = Color(0xFFb5b8c2)) }
             , colors = TextFieldDefaults.colors(
     focusedIndicatorColor = Color.Transparent,
@@ -648,5 +651,40 @@ fun RegistrationForm() {
                 unfocusedContainerColor = Color(0xFFebecee)
             )
         )
+        Spacer(modifier = Modifier.height(20.dp))
+        TextField(
+            value = password,
+            singleLine = true,
+            onValueChange = {password = it },
+            shape = RoundedCornerShape(50.dp),
+            modifier = Modifier.fillMaxWidth(0.8f),
+            placeholder = { Text("Password", color = Color(0xFFb5b8c2)) }
+            , colors = TextFieldDefaults.colors(
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                focusedContainerColor = Color(0xFFebecee),
+                unfocusedContainerColor = Color(0xFFebecee)
+            )
+            , visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+        )
+        Spacer(modifier = Modifier.height(5.dp))
+        TextButton(
+            onClick = { Log.d("Forgot Password","Forgot Password")}
+        ) {
+            Text("Forgot Password?", color = Color.Black, fontWeight = FontWeight.W300)
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+        Button(
+            onClick = { Log.d("Forgot Password","Forgot Password")},
+            shape = RoundedCornerShape(50.dp)
+            , modifier = Modifier.fillMaxWidth(0.5f).height(50.dp)
+            , colors = ButtonDefaults.buttonColors(
+                containerColor  = Color(0xffd31b57)
+            )
+        ) {
+            Text("Log in")
+        }
+        Spacer(modifier = Modifier.weight(2f))
     }
 }
